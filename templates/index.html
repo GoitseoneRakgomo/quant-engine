@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% block title %}QuantifyPro - Digital Measurement & Cost Estimation{% endblock %}
+{% block content %}
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-blue-50 to-indigo-100 py-20">
+        <div class="container mx-auto px-6 text-center md:text-left md:flex items-center">
+            <div class="md:w-1/2">
+                <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">Digital Measurement & Cost Estimation for Quantity Surveyors</h1>
+                <p class="text-lg text-gray-600 mb-8">Streamline your workflow with precise digital takeoffs and intelligent cost libraries. Built for modern quantity surveyors.</p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="{{ url_for('register') }}" class="px-8 py-3 bg-blue-600 text-white rounded-lg text-lg font-semibold hover:bg-blue-700 transition">Create Account</a>
+                    <a href="#demo" class="px-8 py-3 border border-blue-600 text-blue-600 rounded-lg text-lg font-semibold hover:bg-blue-50 transition">login</a>
+                </div>
+                <p class="text-sm text-gray-500 mt-4">No credit card required. 14-day free trial.</p>
+            </div>
+            <div class="md:w-1/2 mt-10 md:mt-0">
+                <img src="https://via.placeholder.com/600x400?text=Dashboard+Preview" alt="Dashboard Preview" class="rounded-lg shadow-xl">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section (unchanged) -->
+    <section id="features" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Everything You Need in One Platform</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="p-6 border rounded-lg shadow-sm hover:shadow-md transition">
+                    <div class="text-blue-600 text-4xl mb-4"><i class="fas fa-ruler-combined"></i></div>
+                    <h3 class="text-xl font-semibold mb-2">Digital Measurement</h3>
+                    <p class="text-gray-600">Upload drawings and measure areas, volumes, and lengths with precision. Supports PDF, DXF, and image files.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="p-6 border rounded-lg shadow-sm hover:shadow-md transition">
+                    <div class="text-blue-600 text-4xl mb-4"><i class="fas fa-calculator"></i></div>
+                    <h3 class="text-xl font-semibold mb-2">Cost Estimation</h3>
+                    <p class="text-gray-600">Generate instant cost estimates based on your measurement data and customizable cost libraries.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="p-6 border rounded-lg shadow-sm hover:shadow-md transition">
+                    <div class="text-blue-600 text-4xl mb-4"><i class="fas fa-users-cog"></i></div>
+                    <h3 class="text-xl font-semibold mb-2">Multi‑Role Access</h3>
+                    <p class="text-gray-600">Tailored experiences for admins, surveyors, and clients with role‑based permissions.</p>
+                </div>
+            </div>
+
+         <!-- How It Works (unchanged) -->
+    <section id="how-it-works" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">How It Works</h2>
+            <div class="grid md:grid-cols-3 gap-8 text-center">
+                <div>
+                    <div class="bg-blue-600 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mx-auto mb-4">1</div>
+                    <h3 class="text-xl font-semibold mb-2">Upload Drawings</h3>
+                    <p class="text-gray-600">Drag and drop PDF, DXF, or image files. Our system automatically scales them.</p>
+                </div>
+                <div>
+                    <div class="bg-blue-600 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mx-auto mb-4">2</div>
+                    <h3 class="text-xl font-semibold mb-2">Measure Digitally</h3>
+                    <p class="text-gray-600">Use intuitive tools to trace areas, lengths, and counts. Get real-time measurements.</p>
+                </div>
+                <div>
+                    <div class="bg-blue-600 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mx-auto mb-4">3</div>
+                    <h3 class="text-xl font-semibold mb-2">Generate Estimates</h3>
+                    <p class="text-gray-600">Apply cost libraries and rules to produce detailed cost reports instantly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simple Demo / API Preview (unchanged) -->
+    <section id="demo" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-8">Try a Quick Estimate</h2>
+            <p class="text-center text-gray-600 mb-12">Enter an area (sq ft) to see a sample cost breakdown.</p>
+            <div class="max-w-md mx-auto bg-gray-100 p-6 rounded-lg shadow">
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-2">Area (sq ft)</label>
+                    <input type="number" id="areaInput" value="1000" class="w-full px-3 py-2 border rounded-lg">
+                </div>
+                <button id="estimateBtn" class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">Get Estimate</button>
+                <div id="result" class="mt-4 text-center font-semibold hidden"></div>
+            </div>
+        </div>
+    </section>
+
+    
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.getElementById('estimateBtn')?.addEventListener('click', function() {
+        const area = document.getElementById('areaInput').value;
+        fetch('/api/estimate', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ area: parseFloat(area) })
+        })
+        .then(response => response.json())
+        .then(data => {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `Estimated total: $${data.total_cost.toFixed(2)} ${data.currency}`;
+            resultDiv.classList.remove('hidden');
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Failed to get estimate. Make sure the server is running.');
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Client Dashboard - QuantifyPro{% endblock %}
+{% block content %}
+<div class="container mx-auto px-6 py-12">
+    <h1 class="text-3xl font-bold mb-6">Welcome, {{ user.username }}!</h1>
+    <p class="text-gray-600 mb-8">This is your client dashboard. From here you can manage your projects, measurements, and estimates.</p>
+
+    <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-lg shadow">
+            <i class="fas fa-file-alt text-blue-600 text-3xl mb-3"></i>
+            <h2 class="text-xl font-semibold mb-2">My Projects</h2>
+            <p class="text-gray-600 mb-4">View and manage your ongoing projects.</p>
+            <a href="#" class="text-blue-600 hover:underline">Go to Projects →</a>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow">
+            <i class="fas fa-ruler text-blue-600 text-3xl mb-3"></i>
+            <h2 class="text-xl font-semibold mb-2">New Measurement</h2>
+            <p class="text-gray-600 mb-4">Start a digital takeoff from a drawing.</p>
+            <a href="#" class="text-blue-600 hover:underline">Upload Drawing →</a>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow">
+            <i class="fas fa-chart-line text-blue-600 text-3xl mb-3"></i>
+            <h2 class="text-xl font-semibold mb-2">Recent Estimates</h2>
+            <p class="text-gray-600 mb-4">View your latest cost estimates.</p>
+            <a href="#" class="text-blue-600 hover:underline">View Estimates →</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
