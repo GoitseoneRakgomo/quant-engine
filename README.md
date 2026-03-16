@@ -30,19 +30,21 @@ QuantifyPro is a web-based application designed for quantity surveyors to perfor
 
 ---
 
-## System Architecture
+sequenceDiagram
+    actor Client
+    participant Browser
+    participant Flask
+    participant Database
 
-The following diagram shows the high‑level architecture of QuantifyPro:
-
-```mermaid
-graph TD
-    A[Browser] -->|HTTP Requests| B(Flask App)
-    B --> C[Authentication<br/>Flask‑Login]
-    B --> D[View Functions]
-    B --> E[API Endpoints]
-    D --> F[Render Templates]
-    F --> G[Tailwind CSS / JS]
-    E --> H[(SQLite Database)]
-    C --> H
-    H --> I[User Table]
-    H --> J[Future Tables<br/>(Projects, Measurements, etc.)]
+    Client->>Browser: Uploads drawing
+    Browser->>Flask: POST /api/upload (file)
+    Flask->>Database: Save file reference
+    Flask-->>Browser: Return drawing ID
+    Client->>Browser: Performs measurements (e.g., trace area)
+    Browser->>Flask: POST /api/measure (drawing ID, coordinates)
+    Flask->>Database: Store measurement results
+    Flask-->>Browser: Return calculated area/volume
+    Client->>Browser: Requests cost estimate
+    Browser->>Flask: POST /api/estimate (measurement IDs, cost library)
+    Flask->>Database: Retrieve measurements & cost rules
+    Flask-->>Browser: Return cost breakdown
