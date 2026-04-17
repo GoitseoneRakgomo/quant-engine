@@ -1,0 +1,73 @@
+{% extends "admin_base.html" %}
+
+{% block title %}Cost Libraries - QuantifyPro Admin{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-6 py-8">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
+        <div>
+            <h1 class="text-3xl font-bold mb-2">Cost Libraries</h1>
+            <p class="text-gray-600">Maintain pricing for materials, labor, and equipment.</p>
+        </div>
+        <button class="inline-flex items-center px-5 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition">
+            <i class="fas fa-plus mr-2"></i> Add Library Item
+        </button>
+    </div>
+
+    <div class="grid xl:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-lg shadow">
+            <h2 class="text-xl font-semibold mb-3">Materials</h2>
+            <ul class="space-y-3 text-gray-700">
+                <li class="flex justify-between items-center">
+                    <span>Concrete</span>
+                    <span class="font-semibold">$125/yd³</span>
+                </li>
+                <li class="flex justify-between items-center">
+                    <span>Gypsum Board</span>
+                    <span class="font-semibold">$15/ft²</span>
+                </li>
+                <li class="flex justify-between items-center">
+                    <span>Paint</span>
+                    <span class="font-semibold">$3/ft²</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow">
+            <h2 class="text-xl font-semibold mb-3">Labor</h2>
+            <ul class="space-y-3 text-gray-700">
+                <li class="flex justify-between items-center">
+                    <span>Carpentry</span>
+                    <span class="font-semibold">$65/hr</span>
+                </li>
+                <li class="flex justify-between items-center">
+                    <span>Painting</span>
+                    <span class="font-semibold">$45/hr</span>
+                </li>
+                <li class="flex justify-between items-center">
+                    <span>Electrical</span>
+                    <span class="font-semibold">$90/hr</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow">
+            <h2 class="text-xl font-semibold mb-3">Equipment</h2>
+            <ul class="space-y-3 text-gray-700">
+                <li class="flex justify-between items-center">
+                    <span>Scaffold</span>
+                    <span class="font-semibold">$120/day</span>
+                </li>
+                <li class="flex justify-between items-center">
+                    <span>Excavator</span>
+                    <span class="font-semibold">$850/day</span>
+                </li>
+                <li class="flex justify-between items-center">
+                    <span>Laser Level</span>
+                    <span class="font-semibold">$35/day</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

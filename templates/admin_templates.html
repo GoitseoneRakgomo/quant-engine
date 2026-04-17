@@ -1,0 +1,48 @@
+{% extends "admin_base.html" %}
+
+{% block title %}Project Templates - QuantifyPro Admin{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-6 py-8">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
+        <div>
+            <h1 class="text-3xl font-bold mb-2">Project Templates</h1>
+            <p class="text-gray-600">Manage your project templates for quick estimate setup.</p>
+        </div>
+        <button class="inline-flex items-center px-5 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition">
+            <i class="fas fa-plus mr-2"></i> New Template
+        </button>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-6">
+        <div class="bg-white p-6 rounded-lg shadow">
+            <div class="flex items-start justify-between mb-4">
+                <div>
+                    <h2 class="text-xl font-semibold">Standard Residential</h2>
+                    <p class="text-gray-500 text-sm">Typical housing cost template for interior finishes.</p>
+                </div>
+                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Published</span>
+            </div>
+            <p class="text-gray-600 mb-4">Includes default quantities and material sets for residential floor areas, ceilings, and finishes.</p>
+            <div class="space-x-3 text-sm">
+                <button class="text-blue-600 hover:text-blue-900">Edit</button>
+                <button class="text-red-600 hover:text-red-900">Delete</button>
+            </div>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow">
+            <div class="flex items-start justify-between mb-4">
+                <div>
+                    <h2 class="text-xl font-semibold">Commercial Fit-Out</h2>
+                    <p class="text-gray-500 text-sm">Template for office and retail fit-outs.</p>
+                </div>
+                <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Draft</span>
+            </div>
+            <p class="text-gray-600 mb-4">Designed for fast set-up of lighting, partitions, finishes, and MEP allowances.</p>
+            <div class="space-x-3 text-sm">
+                <button class="text-blue-600 hover:text-blue-900">Edit</button>
+                <button class="text-red-600 hover:text-red-900">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

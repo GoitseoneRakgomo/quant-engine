@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}About - QuantifyPro{% endblock %}
+
+{% block content %}
+<section class="bg-white py-20">
+    <div class="container mx-auto px-6">
+        <div class="md:flex md:gap-14 items-center">
+            <div class="md:w-1/2">
+                <h1 class="text-4xl font-bold mb-6">About QuantifyPro</h1>
+                <p class="text-gray-600 mb-6">QuantifyPro is built to simplify digital measurement, cost estimation, and project planning for quantity surveyors, contractors, and construction teams.</p>
+                <p class="text-gray-600 mb-6">From fast takeoffs to flexible cost libraries, we provide a modern platform to reduce manual work and improve estimate accuracy.</p>
+                <a href="{{ url_for('register') }}" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Get Started</a>
+            </div>
+            <div class="md:w-1/2 mt-10 md:mt-0">
+                <img src="https://via.placeholder.com/640x420?text=About+QuantifyPro" alt="About QuantifyPro" class="rounded-3xl shadow-xl">
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 mt-16">
+            <div class="p-6 bg-blue-50 rounded-3xl shadow-sm">
+                <h2 class="text-xl font-semibold mb-3">Fast Takeoffs</h2>
+                <p class="text-gray-600">Measure areas, lengths, and volumes digitally using intuitive tools and smart helpers.</p>
+            </div>
+            <div class="p-6 bg-blue-50 rounded-3xl shadow-sm">
+                <h2 class="text-xl font-semibold mb-3">Cost Libraries</h2>
+                <p class="text-gray-600">Use editable material, labor, and equipment rates to build estimates that match your workflows.</p>
+            </div>
+            <div class="p-6 bg-blue-50 rounded-3xl shadow-sm">
+                <h2 class="text-xl font-semibold mb-3">Role-Based Access</h2>
+                <p class="text-gray-600">Admin and client dashboards separate control from execution so everyone works in the right place.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

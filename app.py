@@ -72,11 +72,44 @@ def index():
 
 @app.route('/about')
 def about():
-    return "About page (coming soon)"
+    return render_template('about.html')
 
 @app.route('/contact')
 def contact():
-    return "Contact page (coming soon)"
+    return render_template('contact.html')
+
+@app.route('/admin_users')
+@login_required
+def admin_users():
+    if not current_user.is_admin():
+        flash('You do not have permission to access this page.', 'danger')
+        return redirect(url_for('client_dashboard'))
+    users = User.query.all()
+    return render_template('admin_users.html', users=users)
+
+@app.route('/admin_templates')
+@login_required
+def admin_templates():
+    if not current_user.is_admin():
+        flash('You do not have permission to access this page.', 'danger')
+        return redirect(url_for('client_dashboard'))
+    return render_template('admin_templates.html')
+
+@app.route('/admin_rules')
+@login_required
+def admin_rules():
+    if not current_user.is_admin():
+        flash('You do not have permission to access this page.', 'danger')
+        return redirect(url_for('client_dashboard'))
+    return render_template('admin_rules.html')
+
+@app.route('/admin_cost_libraries')
+@login_required
+def admin_cost_libraries():
+    if not current_user.is_admin():
+        flash('You do not have permission to access this page.', 'danger')
+        return redirect(url_for('client_dashboard'))
+    return render_template('admin_cost_libraries.html')
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
