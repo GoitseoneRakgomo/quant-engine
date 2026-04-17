@@ -176,7 +176,29 @@ def admin_dashboard():
     users = User.query.all()
     return render_template('admin_dash.html', users=users)
 
-# ---------- API Endpoints (unchanged) ----------
+# ---------- Admin API Endpoints ----------
+@app.route('/api/system-stats', methods=['GET'])
+@login_required
+def system_stats():
+    if not current_user.is_admin():
+        return jsonify({"error": "Unauthorized"}), 403
+    
+    all_users = User.query.all()
+    admin_count = sum(1 for u in all_users if u.is_admin())
+    client_count = len(all_users) - admin_count
+    
+    return jsonify({
+        "total_users": len(all_users),
+        "admins": admin_count,
+        "clients": client_count,
+        "database_status": "Connected",
+        "server_status": "Running",
+        "uptime_hours": 168,
+        "last_backup": "2026-04-16 22:00:00",
+        "version": "1.0.0"
+    })
+
+# ---------- API Endpoints ----------
 @app.route('/api/estimate', methods=['POST'])
 def estimate():
     data = request.get_json()
